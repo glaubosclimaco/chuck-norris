@@ -5,7 +5,7 @@ import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 
 const name = 'Chuck Norris Fan Facts!';
-export const siteTitle = 'Next.js Sample Website';
+export const siteTitle = 'Chuck Norris Funny Jokes';
 
 export default function Layout({ children, home }) {
   return (
