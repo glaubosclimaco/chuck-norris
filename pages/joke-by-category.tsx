@@ -1,42 +1,44 @@
+import Link from 'next/link'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-
 import useSWR from 'swr'
-import Link from 'next/link'
+import React, { Component } from 'react'
+import Select from '../components/select';
 
-function getRandomJoke() {
-  const URL = 'https://api.chucknorris.io/jokes/random'
+export default function jokeByCategory() {
+    const URL = 'https://api.chucknorris.io/jokes/categories';
 
   const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
-
   // fetch data
   const { data, error } = useSWR(URL, fetcher)
-
-  return { data, error }
-}
-
-export default function renderJoke() {
-  const { data, error } = getRandomJoke()
 
   if (error) return <div>failed to load</div>
 
   if (!data) return <div>loading...</div>
 
-  // render
+  // const categories = () => (
+  //   <Select options={data} />
+  // )
+
   return (
     <Layout home={undefined}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-
       <section className={utilStyles.headingMd}>
-        <h2>{data.value}</h2>
+        {/* <h2>{data[0]}</h2> */}
         <div>
-          <Link href={''}>
-            <a onClick={getRandomJoke}> Add</a>
-          </Link>
-        </div>
+
+        <Select selected={''} categories={data}  />
+
+        
+          
+        
+      
+
+      
+      </div>
       </section>
     </Layout>
   )

@@ -6,15 +6,14 @@ export type buttonProps = {
   name: string;
 }
 
-function button({href, name}:buttonProps) {
+export default function button({href, name}:buttonProps) {
   return (
     <Link href={href}>
         <a className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow'>
             {name}
         </a>
     </Link>
+   
     
   )
 }
-
-export default button
