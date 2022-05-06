@@ -1,45 +1,64 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import useSWR from 'swr'
-import React, { Component } from 'react'
-import Select from '../components/select';
+import React, { Component, useEffect, useState } from 'react'
+import axios from 'axios'
 
 export default function jokeByCategory() {
-    const URL = 'https://api.chucknorris.io/jokes/categories';
+  const [categories, setCategories] = useState(['Select an option'])
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [categoryState, setCategoryState] = useState('[Select a category]')
+  const [joke, setJoke] = useState('')
 
-  const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
-  // fetch data
-  const { data, error } = useSWR(URL, fetcher)
+  useEffect(() => {
+    fetchCategories()
 
-  if (error) return <div>failed to load</div>
+    if (selectedCategory != '') {
+      fetchJokeByCategory()
+    }
+  }, [selectedCategory]) //otimizacao: renderiza apenas se selectedCategory foi atualizado
 
-  if (!data) return <div>loading...</div>
+  async function fetchCategories() {
+    const result = await axios.get(
+      'https://api.chucknorris.io/jokes/categories'
+    )
+    console.log(result.data)
+    setCategories([...categories, ...result.data])
+  }
 
-  // const categories = () => (
-  //   <Select options={data} />
-  // )
+  async function fetchJokeByCategory() {
+    const result = await axios.get(
+      'https://api.chucknorris.io/jokes/random?category=' + selectedCategory
+    )
+    console.log(result.data.value)
+    setJoke(result.data.value)
+  }
 
   return (
     <Layout home={undefined}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        {/* <h2>{data[0]}</h2> */}
-        <div>
 
-        <Select selected={''} categories={data}  />
+      <div>
+        <select
+          value={'categoria'}
+          onChange={(e) => {
+            // setCategoryState(e.target.value)
+            setSelectedCategory(e.target.value)
+          }}
+        >
+          {categories.map((c, index) => (
+            <option key={index}>{c}</option>
+          ))}
+        </select>
 
-        
-          
-        
-      
+        {/* {categories} */}
 
-      
+        <h1>categoryState: {categoryState}</h1>
+        <h1>selectedCategory: {selectedCategory}</h1>
+        <h2>Joke: {joke}</h2>
       </div>
-      </section>
     </Layout>
   )
 }
