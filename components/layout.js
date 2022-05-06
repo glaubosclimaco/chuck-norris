@@ -4,7 +4,7 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'Chuck Norris Fan Facts!'
+const name = 'Chuck Norris Facts!'
 export const siteTitle = 'Chuck Norris Funny Jokes'
 
 export default function Layout({ children, home }) {
