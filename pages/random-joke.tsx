@@ -4,24 +4,32 @@ import utilStyles from '../styles/utils.module.css'
 
 import useSWR from 'swr'
 import Link from 'next/link'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
-function getRandomJoke() {
-  const URL = 'https://api.chucknorris.io/jokes/random'
+// function getJoke() {
+//   const URL = 'https://api.chucknorris.io/jokes/random'
 
-  const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
+//   fetch(URL).then(async (serverAnswer) => {
+//     const answer = await serverAnswer.json()
+//     setRandom(answer)
+//   })
+// }
 
-  // fetch data
-  const { data, error } = useSWR(URL, fetcher)
+export default function renderRandomJoke() {
+  const [randomJoke, setRandomJoke] = useState('')
 
-  return { data, error }
-}
+  async function getRandomJoke() {
+    const URL = 'https://api.chucknorris.io/jokes/random'
+    const response = await axios.get('https://api.chucknorris.io/jokes/random')
 
-export default function renderJoke() {
-  const { data, error } = getRandomJoke()
+    console.log(response.data.value)
+    setRandomJoke(response.data.value)
+  }
 
-  if (error) return <div>failed to load</div>
-
-  if (!data) return <div>loading...</div>
+  useEffect(() => {
+    getRandomJoke()
+  }, [])
 
   // render
   return (
@@ -31,11 +39,17 @@ export default function renderJoke() {
       </Head>
 
       <section className={utilStyles.headingMd}>
-        <h2>{data.value}</h2>
+        <h2>{randomJoke}</h2>
         <div>
-          <Link href={''} >
-            <a           className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
- onClick={getRandomJoke}> One more :-)</a>
+          <Link data-cy="one-more-btn" href={''}>
+            <a
+              data-cy="one-more-btn"
+              className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
+              onClick={getRandomJoke}
+            >
+              {' '}
+              One more :-)
+            </a>
           </Link>
         </div>
       </section>
