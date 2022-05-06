@@ -4,6 +4,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Button from '../components/button'
 
 export default function renderJokeBySearch() {
   const [input, setInput] = useState('')
@@ -31,7 +32,7 @@ export default function renderJokeBySearch() {
         setJoke(response.data.result[rand].value)
       } catch (error) {
         setError('Sorry, try again!')
-        console.log(error.code)
+        // console.log(error.code)
       }
     }
   }
@@ -57,16 +58,13 @@ export default function renderJokeBySearch() {
         }}
       ></input>
 
-      <Link href={''}>
-        <a
-          className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
-          onClick={fetchJokesBySearch}
-        >
-          Go!
-        </a>
-      </Link>
+      <Button
+        href={''}
+        name="Go!"
+        dataCy="search-joke-btn"
+        onClick={fetchJokesBySearch}
+      />
 
-      <br />
       <p>{error != '' ? error : joke}</p>
     </Layout>
   )

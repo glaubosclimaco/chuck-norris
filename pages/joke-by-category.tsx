@@ -41,15 +41,12 @@ export default function jokeByCategory() {
 
       <div>
         <section className={utilStyles.headingMd}>
-          <label
-            className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
-            
-          >
+          <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
             Select a category:
           </label>
           <select
+            data-cy="category-selector"
             onChange={(e) => {
-              // setCategoryState(e.target.value)
               setSelectedCategory(e.target.value)
             }}
           >

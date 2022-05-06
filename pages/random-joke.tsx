@@ -6,6 +6,7 @@ import useSWR from 'swr'
 import Link from 'next/link'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import Button from '../components/button'
 
 // function getJoke() {
 //   const URL = 'https://api.chucknorris.io/jokes/random'
@@ -40,18 +41,12 @@ export default function renderRandomJoke() {
 
       <section className={utilStyles.headingMd}>
         <h2>{randomJoke}</h2>
-        <div>
-          <Link data-cy="one-more-btn" href={''}>
-            <a
-              data-cy="one-more-btn"
-              className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
-              onClick={getRandomJoke}
-            >
-              {' '}
-              One more :-)
-            </a>
-          </Link>
-        </div>
+        <Button
+          href={''}
+          name={'One more :-)'}
+          dataCy={'one-more-btn'}
+          onClick={getRandomJoke}
+        />
       </section>
     </Layout>
   )
