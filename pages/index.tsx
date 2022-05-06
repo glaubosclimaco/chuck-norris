@@ -16,7 +16,7 @@ export default function Home() {
        <br></br>
        <p> <Button href='joke-by-category' name='Joke by category' /></p>
        <br></br>
-       <p><Button href='' name='Search for a Joke' /></p>
+       <p><Button href='joke-by-search' name='Search for a Joke' /></p>
 
       
       </section>

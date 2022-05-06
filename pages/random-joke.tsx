@@ -33,8 +33,9 @@ export default function renderJoke() {
       <section className={utilStyles.headingMd}>
         <h2>{data.value}</h2>
         <div>
-          <Link href={''}>
-            <a onClick={getRandomJoke}> Add</a>
+          <Link href={''} >
+            <a           className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
+ onClick={getRandomJoke}> One more :-)</a>
           </Link>
         </div>
       </section>
