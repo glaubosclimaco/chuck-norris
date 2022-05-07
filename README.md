@@ -1,8 +1,6 @@
 # Chuck Norris' jokes search interface
 
 
-
-## About The Project
 This is a project to search for "facts" (jokes) about Chuck Norris. This repo was created with Next JS, using Typescript for frontend, Tailwindcss for styling and Cypress for tests.
 
 
