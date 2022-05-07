@@ -47,24 +47,25 @@ export default function renderJokeBySearch() {
         <title>{siteTitle}</title>
       </Head>
 
-      <input
-        className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-        id="username"
-        type="text"
-        placeholder="Type something"
-        value={input}
-        onChange={(event) => {
-          setInput(event.target.value)
-        }}
-      ></input>
+      <div className="flex  flex-col items-center justify-center py-2">
+        <input
+          className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+          id="username"
+          type="text"
+          placeholder="Type something"
+          value={input}
+          onChange={(event) => {
+            setInput(event.target.value)
+          }}
+        ></input>
 
-      <Button
-        href={''}
-        name="Go!"
-        dataCy="search-joke-btn"
-        onClick={fetchJokesBySearch}
-      />
-
+        <Button
+          href={''}
+          name="Go!"
+          dataCy="search-joke-btn"
+          onClick={fetchJokesBySearch}
+        />
+      </div>
       <p>{error != '' ? error : joke}</p>
     </Layout>
   )

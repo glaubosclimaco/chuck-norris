@@ -39,7 +39,8 @@ export default function renderRandomJoke() {
         <title>{siteTitle}</title>
       </Head>
 
-      <section className={utilStyles.headingMd}>
+      {/* <section className={utilStyles.headingMd}> */}
+      <div className="flex  flex-col items-center justify-center py-2">
         <h2>{randomJoke}</h2>
         <Button
           href={''}
@@ -47,7 +48,8 @@ export default function renderRandomJoke() {
           dataCy={'one-more-btn'}
           onClick={getRandomJoke}
         />
-      </section>
+        </div>
+      {/* </section> */}
     </Layout>
   )
 }

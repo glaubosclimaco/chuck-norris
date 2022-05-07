@@ -9,16 +9,14 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
      
+
        <br></br>
        <p><Button href='random-joke' name='Random Joke' dataCy={'random-joke-btn'} onClick={undefined} /></p> 
        <br></br>
        <p> <Button href='joke-by-category' name='Joke by category' dataCy={'joke-by-category-btn'} onClick={undefined} /></p>
        <br></br>
        <p><Button href='joke-by-search' name='Search for a Joke' dataCy={'joke-by-search-btn'} onClick={undefined} /></p>
-
-      </section>
     </Layout>
   );
 }
