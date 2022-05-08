@@ -9,14 +9,6 @@ export default function jokeByCategory() {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [joke, setJoke] = useState('')
 
-  useEffect(() => {
-    fetchCategories()
-
-    if (selectedCategory != '') {
-      fetchJokeByCategory()
-    }
-  }, [selectedCategory]) //otimizacao: renderiza apenas se selectedCategory foi atualizado
-
   async function fetchCategories() {
     const result = await axios.get(
       'https://api.chucknorris.io/jokes/categories'
@@ -26,12 +18,24 @@ export default function jokeByCategory() {
   }
 
   async function fetchJokeByCategory() {
-    const result = await axios.get(
-      'https://api.chucknorris.io/jokes/random?category=' + selectedCategory
-    )
-    console.log(result.data.value)
-    setJoke(result.data.value)
+    try {
+      const result = await axios.get(
+        'https://api.chucknorris.io/jokes/random?category=' + selectedCategory
+      )
+      console.log(result.data.value)
+      setJoke(result.data.value)
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  useEffect(() => {
+    fetchCategories()
+
+    if (selectedCategory != '') {
+      fetchJokeByCategory()
+    }
+  }, [selectedCategory]) //otimizacao: renderiza apenas se selectedCategory foi atualizado
 
   return (
     <Layout home={undefined}>
@@ -51,7 +55,7 @@ export default function jokeByCategory() {
               <option key={index}>{c}</option>
             ))}
           </select>
-
+          <br></br>
           <p>{joke == '' && selectedCategory != '' ? 'Loading...' : joke}</p>
         </section>
       </div>

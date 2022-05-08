@@ -8,11 +8,17 @@ export default function renderRandomJoke() {
   const [randomJoke, setRandomJoke] = useState('')
 
   async function getRandomJoke() {
-    const URL = 'https://api.chucknorris.io/jokes/random'
-    const response = await axios.get('https://api.chucknorris.io/jokes/random')
+    try {
+      const URL = 'https://api.chucknorris.io/jokes/random'
+      const response = await axios.get(
+        'https://api.chucknorris.io/jokes/random'
+      )
 
-    console.log(response.data.value)
-    setRandomJoke(response.data.value)
+      console.log(response.data.value)
+      setRandomJoke(response.data.value)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
