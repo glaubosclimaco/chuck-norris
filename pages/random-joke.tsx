@@ -42,6 +42,7 @@ export default function renderRandomJoke() {
       {/* <section className={utilStyles.headingMd}> */}
       <div className="flex  flex-col items-center justify-center py-2">
         <h2>{randomJoke}</h2>
+        <br></br>
         <Button
           href={''}
           name={'One more :-)'}

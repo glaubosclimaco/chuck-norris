@@ -47,7 +47,7 @@ export default function renderJokeBySearch() {
         <title>{siteTitle}</title>
       </Head>
 
-      <div className="flex  flex-col items-center justify-center py-2">
+      <div className="justify-content: space-between;">
         <input
           className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
           id="username"
@@ -58,14 +58,15 @@ export default function renderJokeBySearch() {
             setInput(event.target.value)
           }}
         ></input>
-
-        <Button
-          href={''}
-          name="Go!"
-          dataCy="search-joke-btn"
-          onClick={fetchJokesBySearch}
-        />
       </div>
+      <br></br>
+      <Button
+        href={''}
+        name="Go!"
+        dataCy="search-joke-btn"
+        onClick={fetchJokesBySearch}
+      />
+    
       <p>{error != '' ? error : joke}</p>
     </Layout>
   )
