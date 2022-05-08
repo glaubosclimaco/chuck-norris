@@ -10,6 +10,7 @@
     "test": "start-server-and-test start http://localhost:3030 cy:run"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.2",
     "apollo-server": "^3.7.0",
     "axios": "^0.27.2",
     "graphql": "^16.4.0",
