@@ -1,9 +1,7 @@
 import Layout, { siteTitle } from '../components/layout'
 import axios from 'axios'
-// import { Head } from 'next/document'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 import Button from '../components/button'
 
 export default function renderJokeBySearch() {
@@ -19,12 +17,8 @@ export default function renderJokeBySearch() {
         const response = await axios.get(
           `https://api.chucknorris.io/jokes/search?query=${input}`
         )
-
         console.log(response.data.result.length)
-
         const numberOfJokes = response.data.result.length
-        // console.log('number of jokes = ' + numberOfJokes)
-
         const rand = Math.trunc(Math.random() * numberOfJokes)
         console.log(rand)
         console.log(response.data.result[rand].value)
@@ -32,7 +26,6 @@ export default function renderJokeBySearch() {
         setJoke(response.data.result[rand].value)
       } catch (error) {
         setError('Sorry, try again!')
-        // console.log(error.code)
       }
     }
   }
@@ -58,7 +51,7 @@ export default function renderJokeBySearch() {
             setInput(event.target.value)
           }}
         ></input>
-
+        <br></br>
         <Button
           href={''}
           name="Go!"
@@ -66,6 +59,7 @@ export default function renderJokeBySearch() {
           onClick={fetchJokesBySearch}
         />
       </div>
+      <br></br>
       <p>{error != '' ? error : joke}</p>
     </Layout>
   )

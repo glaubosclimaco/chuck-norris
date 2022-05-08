@@ -5,7 +5,7 @@ import axios from 'axios'
 import utilStyles from '../styles/utils.module.css'
 
 export default function jokeByCategory() {
-  const [categories, setCategories] = useState(['Select an option'])
+  const [categories, setCategories] = useState(['Select a category'])
   const [selectedCategory, setSelectedCategory] = useState('')
   const [joke, setJoke] = useState('')
 
@@ -41,9 +41,6 @@ export default function jokeByCategory() {
 
       <div>
         <section className={utilStyles.headingMd}>
-          <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
-            Select a category:
-          </label>
           <select
             data-cy="category-selector"
             onChange={(e) => {
@@ -54,10 +51,8 @@ export default function jokeByCategory() {
               <option key={index}>{c}</option>
             ))}
           </select>
-          {/* <h1>categoryState: {categoryState}</h1>
-        <h1>selectedCategory: {selectedCategory}</h1> */}
-          {/* <h2>Joke: {joke}</h2> */}
-          <p>{joke}</p>
+
+          <p>{joke == '' && selectedCategory != '' ? 'Loading...' : joke}</p>
         </section>
       </div>
     </Layout>

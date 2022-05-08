@@ -5,7 +5,7 @@ export type buttonProps = {
   href: string
   name: string
   dataCy: string // for testing with cypress
-  onClick: any
+  onClick: () => void;
 }
 
 export default function button({ href, name, dataCy, onClick }: buttonProps) {
